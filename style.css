@@ -1,0 +1,103 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+:root{
+    --col-bg:#F1F6F9;
+    --col-card:#394867;
+}
+*,
+*::before,
+*::after{
+    margin: 0;
+    padding: 0;
+    outline: 0;
+    box-sizing: border-box;
+    border: none;
+    
+}
+body{
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--col-bg);
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.wrapper{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+.wrapper .card{
+    width: 20%;
+    aspect-ratio: 1/1.2;
+    background: var(--col-card);
+    padding: 1rem;
+    border-radius: .5rem;   
+    line-height: 2;
+
+}
+.card .pass-show{
+    width: 100%;
+    height: 3rem;
+    /* font-size: 1.5rem; */
+    margin-bottom: .5rem;
+    box-shadow: 0 0 4px 1px white;
+    background-color: white;
+    padding: auto 0;
+    display: flex;
+
+}
+.card .pass-show #btn-copy{
+    width: 2rem;
+    font-size: 1.3rem;
+    background: none;
+    color: #394867;
+    cursor: pointer;
+}
+.card .pass-show #get-pass{
+    width: 100%;
+    height: 100%;
+    padding: 1rem .6rem;
+    background: none;
+    font-size: 1.5rem;
+    
+}
+.card .option{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+.card .option #inp-size{
+    width: 4rem;
+    height: 2rem;
+    margin: auto 0;
+    border-radius: .5rem;
+    padding: .3rem .2rem;
+
+}
+.card .slider{
+    width: 100%;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    
+}
+input[type="range"]{
+    width:80%;
+    display: inline-block;
+}
+.card .option label{
+    font-size: 1rem;
+    font-weight: bold;
+}
+.card #btn-generate{
+    width: 100%;
+    height: 3rem;
+    margin-top: 1.7rem;
+    border-radius:.5rem ;
+    cursor: pointer;
+    font-size: 1.5rem;
+}
