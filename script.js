@@ -1,65 +1,40 @@
-const upperSet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-const lowerSet = "abcdefghijklmnopqrstuvwxyz";
-const numberSet = "1234567890";
-const symbolSet = "~!@#$%^&*()_+";
+const upperSet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+    lowerSet = "abcdefghijklmnopqrstuvwxyz",
+    numberSet = "1234567890",
+    symbolSet = "~!@#$%^&*()_+";
 
-const passBox = document.getElementById('get-pass');
-const upperCase = document.getElementById('upper-case');
-const lowerCase = document.getElementById('lower-case');
-const number = document.getElementById('num');
-const symbol = document.getElementById('symbol');
+const passBox = document.getElementById('get-pass'),
+    upperCase = document.getElementById('upper-case'),
+    lowerCase = document.getElementById('lower-case'),
+    number = document.getElementById('num'),
+    symbol = document.getElementById('symbol'),
+    passLen = document.getElementById('inp-size');
 
-const randomData = (dataSet) =>{
-        return dataSet[Math.floor(Math.random(dataSet)*(dataSet.length))];
-}
+// Random single char generator
+const randomData = (dataSet) =>dataSet[Math.floor(Math.random(dataSet)*(dataSet.length))];
 
-const passLen = document.getElementById('inp-size');
-let passSize = passLen.value;
-
-passLen.addEventListener('input', () => {
-    passSize = passLen.value;
-    document.getElementById('value').innerText = passSize;
-})
+passLen.addEventListener('input', () => document.getElementById('value').innerText = passLen.value);
 
 // Get random password
-let finalPass;
 const getRandomPassword = (password = "") =>{
 
-    if(upperCase.checked)
-        password += randomData(upperSet); 
-    if(lowerCase.checked)
-        password += randomData(lowerSet); 
-    if(num.checked)
-        password += randomData(numberSet); 
-    if(symbol.checked)
-        password += randomData(symbolSet); 
+    if(upperCase.checked) password += randomData(upperSet); 
+    if(lowerCase.checked) password += randomData(lowerSet); 
+    if(num.checked) password += randomData(numberSet); 
+    if(symbol.checked) password += randomData(symbolSet); 
     
-    if(password.length < passSize)
-        return getRandomPassword(password);
+    if(password.length < passLen.value) return getRandomPassword(password);
 
-        finalPass = truncateString(password, passSize);
-        passBox.value = finalPass;
+    passBox.value = truncateString(password, passLen.value);
+         
 }
 
-document.getElementById('btn-generate').addEventListener('click', ()=>{
-    getRandomPassword();
-})
+document.getElementById('btn-generate').addEventListener('click', ()=>getRandomPassword())
 
-document.getElementById('btn-copy').addEventListener('click', ()=>{
-    navigator.clipboard.writeText(finalPass);
-
-})
-
+document.getElementById('btn-copy').addEventListener('click', ()=> navigator.clipboard.writeText(passBox.value))
 
 // For trimming the string in required length
-const truncateString = (str, size) => {
-    if(str.length > size){
-        let subStr = str.substring(0,size);
-        return subStr;
-    }
-    else
-        return str;
-}
+const truncateString = (str, size) => str.length > size ? str.substring(0,size): str;
 
 
 
